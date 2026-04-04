@@ -1,0 +1,20 @@
+name: Validate Agent Hub
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate workspace topology
+        run: python3.12 scripts/check_workspace.py
+      - name: Run workspace tests
+        run: python3.12 -m unittest discover -s tests

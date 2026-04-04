@@ -1,0 +1,14 @@
+schema_version = "1"
+workspace_name = "skillfoundry-agents"
+
+[harness]
+package = "skillfoundry-harness"
+context_repo_config = "skillfoundry.toml"
+context_repo_schema_version = "1"
+
+[defaults]
+context_dir_name = "context"
+
+[[agents]]
+agent_id = "researcher"
+path = "agents/researcher"
