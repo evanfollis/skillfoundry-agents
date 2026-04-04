@@ -3,10 +3,15 @@ agent_id = "researcher"
 name = "Researcher"
 role = "research"
 status = "planned"
-context_submodule_path = "context"
+context_mount_path = "context"
 
 [purpose]
 summary = "Gather, refine, and structure research context for the broader Skillfoundry system."
 
 [runtime]
-profile = "default"
+profiles = ["researcher"]
+
+[projection]
+memory_profile_path = "profiles/researcher.md"
+bundle_profile_path = "profiles/researcher.json"
+require_frontdoor_pin = true

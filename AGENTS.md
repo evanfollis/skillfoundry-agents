@@ -8,7 +8,7 @@ Maintain the hub that coordinates Skillfoundry agents and their context repos.
 
 - Keep the hub focused on manifests, topology, and coordination.
 - Assume canonical validation rules come from `skillfoundry-harness`.
-- Make submodule expectations explicit in docs and checks.
+- Make context-mount expectations explicit in docs and checks.
 - Preserve clear boundaries between hub metadata and per-agent context state.
 - Keep `agents.toml` as an index, not a duplicate home for agent metadata.
 
@@ -25,4 +25,4 @@ A hub change should answer:
 
 - What agent or workspace topology changed?
 - Does this belong in the hub or in an agent's `context/` repo?
-- What submodule or manifest assumption does it introduce?
+- What context-lineage or manifest assumption does it introduce?
