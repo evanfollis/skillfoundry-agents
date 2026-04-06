@@ -49,6 +49,7 @@ The hub is intentionally narrow:
 ```bash
 python3.12 scripts/check_workspace.py
 python3.12 scripts/resolve_profiles.py agents/researcher/agent.toml
+python3.12 scripts/resolve_profiles.py agents/builder/agent.toml
 python3.12 scripts/project_agent.py agents/researcher/agent.toml /path/to/context-repo
 python3.12 -m unittest discover -s tests
 ```

@@ -1,0 +1,17 @@
+schema_version = "1"
+agent_id = "builder"
+name = "Builder"
+role = "implementation"
+status = "active"
+context_mount_path = "context"
+
+[purpose]
+summary = "Implement hosted MCP servers and adjacent launch artifacts from explicit briefs with production-quality constraints."
+
+[runtime]
+profiles = ["builder"]
+
+[projection]
+memory_profile_path = "profiles/builder.md"
+bundle_profile_path = "profiles/builder.json"
+require_frontdoor_pin = true

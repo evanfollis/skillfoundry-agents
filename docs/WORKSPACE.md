@@ -75,6 +75,7 @@ remains the live mind.
 The hub currently includes one agent:
 
 - `researcher`
+- `builder`
 
 It also includes a reusable initial profile set for the first business system:
 
@@ -86,8 +87,10 @@ It also includes a reusable initial profile set for the first business system:
 - `growth`
 - `valuation`
 
-Its manifest lives at `agents/researcher/agent.toml`. Its `context/` path is the local
-mount point operators use when they want a researcher context lineage checked out.
+Their manifests live at:
+
+- `agents/researcher/agent.toml`
+- `agents/builder/agent.toml`
 
 ## Example Local-First Commands
 

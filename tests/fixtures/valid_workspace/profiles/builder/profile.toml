@@ -1,0 +1,20 @@
+schema_version = "1"
+profile_id = "builder"
+name = "Builder"
+extends = ["default"]
+
+[persona]
+summary = "Implement deployable MCP servers from explicit briefs."
+
+[frontdoor]
+mission = ["Turn validated briefs into working server artifacts."]
+focus = ["Preserve testability and observability.", "Keep the first tool surface narrow."]
+deliverables = ["Deployable implementation.", "Validation notes."]
+
+[policy]
+promotion_validation_kinds = ["build-passing"]
+preferred_bundle_ids = []
+
+[handoff]
+expected_outputs = ["A build artifact ready for review."]
+downstream_profiles = []

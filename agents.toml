@@ -12,3 +12,7 @@ context_dir_name = "context"
 [[agents]]
 agent_id = "researcher"
 path = "agents/researcher"
+
+[[agents]]
+agent_id = "builder"
+path = "agents/builder"
