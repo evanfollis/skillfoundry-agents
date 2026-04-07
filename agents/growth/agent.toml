@@ -2,7 +2,7 @@ schema_version = "1"
 agent_id = "growth"
 name = "Growth"
 role = "distribution"
-status = "planned"
+status = "active"
 context_mount_path = "context"
 
 [purpose]
