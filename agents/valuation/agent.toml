@@ -1,0 +1,17 @@
+schema_version = "1"
+agent_id = "valuation"
+name = "Valuation"
+role = "valuation"
+status = "planned"
+context_mount_path = "context"
+
+[purpose]
+summary = "Compare expected value to actual outcomes and improve what Skillfoundry builds and how it prioritizes work."
+
+[runtime]
+profiles = ["valuation"]
+
+[projection]
+memory_profile_path = "profiles/valuation.md"
+bundle_profile_path = "profiles/valuation.json"
+require_frontdoor_pin = true

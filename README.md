@@ -18,6 +18,16 @@ The hub is intentionally narrow:
 - `agents/<agent>/context/` is the mounted checkout of the source of truth for evolving
   agent state.
 
+The current default operating stack for Skillfoundry includes these long-lived agent
+lineages:
+
+- `researcher`
+- `builder`
+- `designer`
+- `pricing`
+- `growth`
+- `valuation`
+
 ## Scope
 
 - Agent registry and manifests.

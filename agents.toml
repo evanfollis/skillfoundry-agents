@@ -16,3 +16,19 @@ path = "agents/researcher"
 [[agents]]
 agent_id = "builder"
 path = "agents/builder"
+
+[[agents]]
+agent_id = "designer"
+path = "agents/designer"
+
+[[agents]]
+agent_id = "pricing"
+path = "agents/pricing"
+
+[[agents]]
+agent_id = "growth"
+path = "agents/growth"
+
+[[agents]]
+agent_id = "valuation"
+path = "agents/valuation"

@@ -72,10 +72,14 @@ remains the live mind.
 
 ## Current Scaffold
 
-The hub currently includes one agent:
+The hub currently includes these long-lived agent lineages:
 
 - `researcher`
 - `builder`
+- `designer`
+- `pricing`
+- `growth`
+- `valuation`
 
 It also includes a reusable initial profile set for the first business system:
 
@@ -91,6 +95,10 @@ Their manifests live at:
 
 - `agents/researcher/agent.toml`
 - `agents/builder/agent.toml`
+- `agents/designer/agent.toml`
+- `agents/pricing/agent.toml`
+- `agents/growth/agent.toml`
+- `agents/valuation/agent.toml`
 
 ## Example Local-First Commands
 

@@ -1,0 +1,17 @@
+schema_version = "1"
+agent_id = "growth"
+name = "Growth"
+role = "distribution"
+status = "planned"
+context_mount_path = "context"
+
+[purpose]
+summary = "Turn build-ready utilities into distribution-ready launch artifacts and channel plans."
+
+[runtime]
+profiles = ["growth"]
+
+[projection]
+memory_profile_path = "profiles/growth.md"
+bundle_profile_path = "profiles/growth.json"
+require_frontdoor_pin = true

@@ -1,0 +1,17 @@
+schema_version = "1"
+agent_id = "pricing"
+name = "Pricing"
+role = "pricing"
+status = "planned"
+context_mount_path = "context"
+
+[purpose]
+summary = "Model pricing, packaging, and willingness-to-pay hypotheses for candidate and launched products."
+
+[runtime]
+profiles = ["pricing"]
+
+[projection]
+memory_profile_path = "profiles/pricing.md"
+bundle_profile_path = "profiles/pricing.json"
+require_frontdoor_pin = true

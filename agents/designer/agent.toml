@@ -1,0 +1,17 @@
+schema_version = "1"
+agent_id = "designer"
+name = "Designer"
+role = "design"
+status = "planned"
+context_mount_path = "context"
+
+[purpose]
+summary = "Translate validated bottlenecks into explicit product, workflow, and launch designs."
+
+[runtime]
+profiles = ["designer"]
+
+[projection]
+memory_profile_path = "profiles/designer.md"
+bundle_profile_path = "profiles/designer.json"
+require_frontdoor_pin = true
