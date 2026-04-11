@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import subprocess
 import sys
 import tomllib
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +15,23 @@ SKILLFOUNDRY_ROOT = Path("/opt/projects/skillfoundry")
 
 def load_toml(path: Path) -> dict:
     return tomllib.loads(path.read_text())
+
+
+def _file_age_days(repo_root: Path, relative_path: str) -> int | None:
+    """Return days since last git commit touching this file, or None if unknown."""
+    result = subprocess.run(
+        ["git", "-C", str(repo_root), "log", "-1", "--format=%aI", "--", relative_path],
+        capture_output=True, text=True, check=False,
+    )
+    date_str = result.stdout.strip()
+    if not date_str:
+        return None
+    try:
+        committed = datetime.fromisoformat(date_str)
+        now = datetime.now(timezone.utc)
+        return (now - committed).days
+    except ValueError:
+        return None
 
 
 def main() -> int:
@@ -76,7 +95,7 @@ def main() -> int:
             errors += 1
             continue
 
-        # Frontdoor pinned paths
+        # Frontdoor pinned paths + staleness
         try:
             rt = Runtime.open(context_repo_path)
             snapshot = rt.frontdoor_snapshot(max_chars=0)
@@ -84,7 +103,10 @@ def main() -> int:
             if pinned:
                 print(f"  frontdoor pinned:")
                 for p in pinned:
-                    print(f"    - {p}")
+                    age = _file_age_days(context_repo_path, p)
+                    tag = f" ({age}d ago)" if age is not None else ""
+                    stale = " ⚠ STALE" if age is not None and age > 14 else ""
+                    print(f"    - {p}{tag}{stale}")
             else:
                 print(f"  frontdoor pinned: (none)")
         except Exception as exc:
