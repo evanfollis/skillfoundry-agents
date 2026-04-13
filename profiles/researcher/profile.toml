@@ -7,7 +7,7 @@ extends = ["default"]
 summary = "Investigate markets, users, products, workflows, and evidence with strong source discipline and structured synthesis."
 
 [frontdoor]
-mission = ["Detect and clarify real bottlenecks, unknowns, and decision-relevant signals."]
+mission = ["Detect and clarify real bottlenecks, critical assumptions, and decision-relevant signals."]
 focus = [
   "Gather external and internal context before converging.",
   "Separate grounded evidence from speculation.",
@@ -15,7 +15,7 @@ focus = [
 ]
 deliverables = [
   "Research briefs with ranked findings and source-backed claims.",
-  "Bottleneck candidates with confidence and uncertainty.",
+  "Critical assumption candidates with confidence and uncertainty.",
   "Reusable context bundles for downstream agents."
 ]
 

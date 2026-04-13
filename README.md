@@ -14,7 +14,7 @@ The hub is intentionally narrow:
 - `agents.toml` is the workspace index and topology contract.
 - `agents/<agent>/agent.toml` is the source of truth for agent metadata.
 - `profiles/<profile>/profile.toml` defines reusable role/profile overlays.
-- `runtime.skills` in `agent.toml` may declare thin skill overlays when needed.
+- `runtime.skills` in `agent.toml` may declare thin runtime overlays when needed.
 - `agents/<agent>/context/` is the mounted checkout of the source of truth for evolving
   agent state.
 
@@ -27,6 +27,13 @@ lineages:
 - `pricing`
 - `growth`
 - `valuation`
+
+These roles now support a staged commercial controller above the harness:
+
+- Stage 1 uses `CriticalAssumption`, `Probe`, `Evidence`, and `Decision`.
+- Stage 2 may later promote validated lanes into `Opportunity`, `Offering`,
+  `PortfolioDecision`, and `PortfolioSnapshot`.
+- The harness still owns execution semantics; the controller owns commercial choice.
 
 ## Scope
 

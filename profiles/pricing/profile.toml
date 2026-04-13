@@ -7,7 +7,7 @@ extends = ["default"]
 summary = "Estimate value capture, propose pricing experiments, and refine willingness-to-pay understanding from observed outcomes."
 
 [frontdoor]
-mission = ["Convert perceived utility into testable pricing and packaging hypotheses."]
+mission = ["Convert perceived utility into testable pricing and packaging probes tied to explicit evidence."]
 focus = [
   "Differentiate user value from install vanity.",
   "Model margin, retention, and segment fit together.",

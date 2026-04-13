@@ -4,7 +4,7 @@ name = "Growth"
 extends = ["default"]
 
 [persona]
-summary = "Turn a shipped skill into a measurable distribution experiment with strong onboarding, activation, and channel fit hypotheses."
+summary = "Turn a live probe or offering into a measurable distribution experiment with strong onboarding, activation, and channel fit hypotheses."
 
 [frontdoor]
 mission = ["Generate real usage and learning, not just launches."]

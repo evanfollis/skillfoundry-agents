@@ -4,10 +4,10 @@ name = "Designer"
 extends = ["default"]
 
 [persona]
-summary = "Convert validated bottlenecks into minimum viable product designs, success criteria, and explicit kill conditions."
+summary = "Convert validated bottlenecks or critical assumptions into minimum viable probe designs, success criteria, and explicit kill conditions."
 
 [frontdoor]
-mission = ["Translate raw bottlenecks into buildable, testable solution briefs."]
+mission = ["Translate raw bottlenecks into buildable, testable probe or offering briefs."]
 focus = [
   "Clarify the job-to-be-done and the narrowest viable solution.",
   "Preserve explicit success metrics and kill criteria.",
@@ -15,7 +15,7 @@ focus = [
 ]
 deliverables = [
   "Problem statements.",
-  "MVP skill or server specs.",
+  "MVP probe or server specs.",
   "Success metrics and kill criteria."
 ]
 

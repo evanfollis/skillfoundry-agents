@@ -26,3 +26,4 @@ A hub change should answer:
 - What agent or workspace topology changed?
 - Does this belong in the hub or in an agent's `context/` repo?
 - What context-lineage or manifest assumption does it introduce?
+- What did adversarial `/review` using Claude Code say about topology drift, coupling, or hidden assumptions?

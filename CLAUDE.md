@@ -15,3 +15,14 @@ Coordination hub for Skillfoundry agents. Tracks agent registries, profiles, and
 ## Related Repos
 - `skillfoundry-harness` — The runtime that executes these agents
 - `skillfoundry-*-context` — Per-agent context lineages
+
+## Review Expectation
+
+Use `/review` periodically as an adversarial review.
+
+For hub work, use it to challenge:
+
+- topology drift,
+- hidden assumptions about context mounts,
+- duplicated responsibility between hub and context repos,
+- and design choices that look tidy but make the system less adaptable.
