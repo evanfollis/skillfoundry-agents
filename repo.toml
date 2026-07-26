@@ -1,0 +1,25 @@
+schema_version = 1
+name = "skillfoundry-agents"
+shape = "control-plane"
+lifecycle = "active"
+agentic_risk = "agentic"
+canonical_repository = "https://github.com/evanfollis/skillfoundry-agents"
+
+[artifacts]
+authoritative = ["agents.toml", "agents/", "profiles/", "scripts/", "tests/", "docs/"]
+runtime = []
+generated = []
+historical = []
+
+[workspaces.builder]
+agentic_risk = "agentic"
+[workspaces.designer]
+agentic_risk = "agentic"
+[workspaces.growth]
+agentic_risk = "agentic"
+[workspaces.pricing]
+agentic_risk = "agentic"
+[workspaces.researcher]
+agentic_risk = "agentic"
+[workspaces.valuation]
+agentic_risk = "agentic"
