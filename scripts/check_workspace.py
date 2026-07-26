@@ -1,8 +1,22 @@
 #!/usr/bin/env python3
-"""Validate the hub workspace layout for Skillfoundry agents."""
+"""Validate the hub workspace layout for Skillfoundry agents.
+
+Two modes:
+
+- **declaration mode** (default): validates agents.toml, agent manifests,
+  profile resolution, and layout, and validates any ``context/`` mount that
+  happens to be present. This is what CI runs — ``agents/*/context/`` mounts
+  are gitignored live checkouts, absent from a clean checkout, so requiring
+  them in CI would make the hub permanently red for a condition CI structurally
+  cannot satisfy.
+- **operator mode** (``--require-mounts``): additionally requires every
+  ``active``/``paused`` agent to have a present, git-backed ``context/`` mount.
+  Run this on a machine where the lineages are actually mounted.
+"""
 
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 import tomllib
@@ -109,7 +123,7 @@ def validate_git_backed_checkout(path: Path) -> None:
     ensure(result.stdout.strip() == "true", f"{path}: expected git-backed context checkout")
 
 
-def validate_agent(agent_dir: Path, context_dir_name: str, profile_registry: dict[str, dict]) -> None:
+def validate_agent(agent_dir: Path, context_dir_name: str, profile_registry: dict[str, dict], require_mounts: bool = False) -> None:
     manifest = agent_dir / "agent.toml"
     ensure(manifest.exists(), f"{agent_dir}: missing agent.toml")
     config = load_toml(manifest)
@@ -143,11 +157,14 @@ def validate_agent(agent_dir: Path, context_dir_name: str, profile_registry: dic
         ensure(context_path.is_dir(), f"{context_path}: expected directory")
         ensure((context_path / "skillfoundry.toml").exists(), f"{context_path}: missing skillfoundry.toml")
         validate_git_backed_checkout(context_path)
-    if config["status"] in {"active", "paused"}:
+    # Mount presence is an operator-machine liveness property, not a declaration
+    # property. `agents/*/context/` is gitignored, so a clean checkout (CI) never
+    # has it; only enforce presence when explicitly asked to.
+    if require_mounts and config["status"] in {"active", "paused"}:
         ensure(context_path.exists(), f"{manifest}: status {config['status']!r} requires a mounted {context_dir_name}/ checkout")
 
 
-def validate_workspace(repo_root: Path = REPO_ROOT) -> None:
+def validate_workspace(repo_root: Path = REPO_ROOT, require_mounts: bool = False) -> None:
     agents_dir = repo_root / "agents"
     workspace_config = repo_root / "agents.toml"
     context_dir_name, registry = validate_workspace_config(repo_root)
@@ -161,17 +178,26 @@ def validate_workspace(repo_root: Path = REPO_ROOT) -> None:
 
     for agent_id, agent_dir in sorted(discovered.items()):
         ensure(registry[agent_id] == str(agent_dir.relative_to(repo_root)), f"{workspace_config}: path for {agent_id} must match directory")
-        validate_agent(agent_dir, context_dir_name, profile_registry)
+        validate_agent(agent_dir, context_dir_name, profile_registry, require_mounts=require_mounts)
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--require-mounts",
+        action="store_true",
+        help="operator mode: also require active/paused agents to have a "
+        "present, git-backed context/ mount (off by default; CI runs without it)",
+    )
+    args = parser.parse_args()
     try:
-        validate_workspace()
+        validate_workspace(require_mounts=args.require_mounts)
     except WorkspaceError as exc:
         print(f"ERROR {exc}", file=sys.stderr)
         return 1
 
-    print("OK workspace checks passed")
+    mode = "operator (mounts required)" if args.require_mounts else "declaration"
+    print(f"OK workspace checks passed ({mode} mode)")
     return 0
 
 

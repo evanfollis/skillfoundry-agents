@@ -27,13 +27,23 @@ class WorkspaceValidationTests(unittest.TestCase):
     def test_valid_planned_workspace(self) -> None:
         validate_workspace(self.make_workspace())
 
-    def test_active_agent_requires_context_checkout(self) -> None:
+    def test_active_agent_requires_context_checkout_in_operator_mode(self) -> None:
+        # Operator mode enforces mount presence for active agents.
         workspace = self.make_workspace()
         manifest = workspace / "agents" / "researcher" / "agent.toml"
         manifest.write_text(manifest.read_text().replace('status = "planned"', 'status = "active"'))
 
         with self.assertRaises(WorkspaceError):
-            validate_workspace(workspace)
+            validate_workspace(workspace, require_mounts=True)
+
+    def test_active_agent_without_mount_passes_declaration_mode(self) -> None:
+        # Declaration mode (the CI default) validates the hub without requiring
+        # the gitignored context/ mount that a clean checkout never has.
+        workspace = self.make_workspace()
+        manifest = workspace / "agents" / "researcher" / "agent.toml"
+        manifest.write_text(manifest.read_text().replace('status = "planned"', 'status = "active"'))
+
+        validate_workspace(workspace)  # require_mounts=False → no raise
 
     def test_active_agent_accepts_plain_git_context_checkout(self) -> None:
         workspace = self.make_workspace()
