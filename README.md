@@ -2,6 +2,22 @@
 
 Coordination hub for agent manifests, profiles, topology, and mounted context lineages.
 
+**Lifecycle:** active. This is the canonical public hub. It coordinates
+agentic systems but does not itself execute them.
+
+**Verified today:** declaration-mode topology validation and unit tests pass in
+clean CI. Live context-mount availability is intentionally a separate host
+check and is not claimed by CI.
+
+Fastest complete check:
+
+```bash
+make check
+```
+
+See [docs/architecture.md](docs/architecture.md) for authority boundaries,
+runtime mounts, and the dated ADR-0050 transition exception.
+
 ## At a glance
 
 This repo is the workspace hub for Skillfoundry agents. It is narrow on purpose:
